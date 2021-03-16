@@ -3,6 +3,7 @@
 
 #include <string>
 #include <algorithm>
+#include <cstring>
 
 namespace NS_MemImage {
 
@@ -10,6 +11,7 @@ namespace NS_MemImage {
 void MemImage::clear(addr_t addr, size_t size) {
     const size_t SIZE = 512;
     uint8_t buf[SIZE];
+    std::memset(buf, 0, SIZE);
     for (size_t off = 0; off < size; off += SIZE) {
         writeMem(addr + off, buf, std::min(SIZE, size - off));
     }
